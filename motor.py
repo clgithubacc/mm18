@@ -5,11 +5,10 @@ while True:
         ser = serial.Serial('/dev/ttyACM0', 9600)
         break
     except:
-        print('USB Disconnect. Reconnecting.')
+        print('USB Disconnected. Reconnecting.')
         time.sleep(1)
 def go(numOfCell=1):
     for i in  range(0,numOfCell):
-        
         goForward()
 
 def turn(degree):
@@ -21,7 +20,6 @@ def turn(degree):
             turnLeft()
     elif tmp>0:
         for i in range(0,tmp):
-            
             turnRight()
 
 
