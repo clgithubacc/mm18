@@ -1,6 +1,4 @@
-
 def depthFirstSearch1(problem):
-    from game import Directions
     dir=[]
     currentState=problem.getStartState()
     lastDirection=Directions.STOP
@@ -21,9 +19,7 @@ def depthFirstSearch1(problem):
         dir=dir[:currentLevel-1]
         dir.append(nextElement[1][1])
         lastDirection=nextElement[1][1]
-
     return dir
-    #util.raiseNotDefined()
 def depthFirstSearch(problem):
     dir=[]
     startState=problem.getStartState()
@@ -131,8 +127,6 @@ def searchPathTo(problem,start,goal):
     return dir
 
 def breadthFirstSearch(problem):
-    """Search the shallowest nodes in the search tree first."""
-    from game import Directions
     dir=[]
     currentState=problem.getStartState()
     lastDirection=Directions.STOP
@@ -161,7 +155,6 @@ def breadthFirstSearch(problem):
     return dir
 
 def uniformCostSearch(problem,start,end):
-    """Search the node of least total cost first."""
     from game import Directions
     dir=[]
     currentState=problem.getStartState()

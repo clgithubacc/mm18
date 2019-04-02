@@ -1,5 +1,12 @@
-# Micromouse 2018 OSU
-# Author: Chen Liang
+#!/usr/bin/env python
+"""
+OSU Micromouse - SAC 2019
+Author: Chen Liang
+----------------------------------------------------
+04/05/2018  Initial version
+    Implement basic maze building and BFS searching functions
+04/01/2019  Reformat
+"""
 from direction import Directions
 from sensor import getSensorReading
 from cell import Cell
@@ -8,11 +15,7 @@ from findPathTo import findPathToCell
 from movement import listMove
 import operator
 import time
-#from dataProcess import importStoredValue
 
-#   complete process of exploring the maze, which includes
-#   explore maze, back to start point, find and goto the
-#   destination.
 def main():
     # STEP 1: Explore the maze
     # current position of mouse and facing direction
@@ -112,25 +115,25 @@ def main():
     # TODO: Reverse the facing direction of car? Needed?
 
     # STEP 3: Find the goal position
-    # goalCell = None
-    # hasFoundGoal = False
-    # for candidate in potentialGoals:
-    #     candidateCell = candidate[0]
-    #     candidateSuccessors = candidate[1]
-    #     Level2Successors = []
-    #     for c in candidateSuccessors:
-    #         for direction, successor in c.successors.items():
-    #             if successor is not None:
-    #                 successorPos = successor.position
-    #                 if successorPos != candidateCell.position:
-    #                     Level2Successors.append(successorPos)
-    #     for direction, successor in candidateSuccessors[1].successors.items():
-    #         if successor is not None and successor.position in Level2Successors:
-    #             goalCell = candidateCell
-    #             hasFoundGoal = True
-    #             break
-    #     if hasFoundGoal:
-    #         break
+    goalCell = None
+    hasFoundGoal = False
+    for candidate in potentialGoals:
+        candidateCell = candidate[0]
+        candidateSuccessors = candidate[1]
+        Level2Successors = []
+        for c in candidateSuccessors:
+            for direction, successor in c.successors.items():
+                if successor is not None:
+                    successorPos = successor.position
+                    if successorPos != candidateCell.position:
+                        Level2Successors.append(successorPos)
+        for direction, successor in candidateSuccessors[1].successors.items():
+            if successor is not None and successor.position in Level2Successors:
+                goalCell = candidateCell
+                hasFoundGoal = True
+                break
+        if hasFoundGoal:
+            break
 
     # STEP 4: Go to the goal
     dirToGoal = findPathToCell(carState[0], goalFound[0])
@@ -138,26 +141,25 @@ def main():
     time.sleep(5)
     # END
 
-
-# count the number of valid directions (e.g. not wall)
-# @param    sensorResult - sensor readings, a list of length 3
-# @return   number of valid directions - an int
 def numOfValidDirections(sensorResult):
+    """
+    Count the number of valid (e.g. not wall) directions for the given sensor reading
+    :param sensorResult:  a list of 3 booleans in the format of [left, mid, right]
+    :return:  number of valid directions
+    """
     result = 0
     for dir in sensorResult:
         if not dir:
             result += 1
     return result
 
-
-# return the coordinate of next tuple in the given direction
-# based on the current position
-# @param    carState - a list containing current position and
-#           facing direction
-# @param    index - an int indicating the next direction, where
-#           0 is left, 1 is front, 2 is right
-# @return   a tuple indicating the position of next cell
 def dirToNewTuple(carState, index):
+    """
+    Given current state and direction of next movement, calculate the coordinate of next position
+    :param carState: current car state, a list containing current position and facing direction
+    :param index:  index of next direction, where 0 - left, 1 - front, 2 - right
+    :return:  a tuple of coordinate of next position
+    """
     numbers = [(-1, 0), (0, 1), (1, 0), (0, -1)]
     addon = 0
     if carState[1] == Directions.EAST:
@@ -170,7 +172,6 @@ def dirToNewTuple(carState, index):
     print(result)
     return result
 def printTree(startCell):
-    
     successor=[]
     successor.append(startCell)
     visited=[]

@@ -1,10 +1,10 @@
 import serial
 import time
-#   get readings from 3 sensors
-#   @return a list of 3 booleans indicating whether there
-#           is a wall in that direction. Default order is
-#           [left, front, right]
 def getSensorReading():
+    '''
+    Get readings from 3 sensors
+    :return:  a list of 3 booleans in the order of [left, front, right] indicating whether there is a wall in that direction
+    '''
     print ('Getting Readings:')
     time.sleep(0.5)
     ser = serial.Serial('/dev/ttyACM0', 9600)
@@ -30,5 +30,5 @@ def getSensorReading():
         7:[1,1,0],
         8:[1,1,1]
     }
-    print ('Censor Reading:',output[input])
+    print ('Sensor Reading:',output[input])
     return output[input]

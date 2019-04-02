@@ -1,5 +1,8 @@
-# Micromouse 2018 OSU
-# Author: Chen Liang
+#!/usr/bin/env python
+"""
+OSU Micromouse - SAC 2019
+Author: Chen Liang
+"""
 from direction import Directions
 from sensor import getSensorReading
 from cell import Cell
@@ -8,11 +11,6 @@ from findPathTo import findPathToCell
 from movement import listMove
 import operator
 import time
-#from dataProcess import importStoredValue
-
-#   complete process of exploring the maze, which includes
-#   explore maze, back to start point, find and goto the
-#   destination.
 def main():
     # STEP 1: Explore the maze
     # current position of mouse and facing direction
@@ -106,26 +104,25 @@ def main():
     listMove(carState,dirToGoal)
     # END
 
-
-# count the number of valid directions (e.g. not wall)
-# @param    sensorResult - sensor readings, a list of length 3
-# @return   number of valid directions - an int
 def numOfValidDirections(sensorResult):
+    """
+    Count the number of valid (e.g. not wall) directions for the given sensor reading
+    :param sensorResult:  a list of 3 booleans in the format of [left, mid, right]
+    :return:  number of valid directions
+    """
     result = 0
     for dir in sensorResult:
         if not dir:
             result += 1
     return result
 
-
-# return the coordinate of next tuple in the given direction
-# based on the current position
-# @param    carState - a list containing current position and
-#           facing direction
-# @param    index - an int indicating the next direction, where
-#           0 is left, 1 is front, 2 is right
-# @return   a tuple indicating the position of next cell
 def dirToNewTuple(carState, index):
+    """
+    Given current state and direction of next movement, calculate the coordinate of next position
+    :param carState: current car state, a list containing current position and facing direction
+    :param index:  index of next direction, where 0 - left, 1 - front, 2 - right
+    :return:  a tuple of coordinate of next position
+    """
     numbers = [(-1, 0), (0, 1), (1, 0), (0, -1)]
     addon = 0
     if carState[1] == Directions.EAST:
