@@ -1,3 +1,5 @@
+import util
+from direction import Directions
 def depthFirstSearch1(problem):
     dir=[]
     currentState=problem.getStartState()
@@ -40,10 +42,10 @@ def depthFirstSearch(problem):
                 checkList.push(successor)
                 if isCandidate:
                     candidateSuccessors.append(successor[0])
-        print '@',
-        print dir
-        print 'current checkList',
-        print checkList.list
+        print ('@',)
+        print (dir)
+        print ('current checkList',)
+        print (checkList.list)
         if isCandidate and len(candidateSuccessors)==2:
             potentialGoals.append([currentState,candidateSuccessors])
         if not firstRun and checkList.isEmpty():
@@ -52,9 +54,9 @@ def depthFirstSearch(problem):
         nextCell=checkList.pop()
         nextState=nextCell[0]
         path=searchPathTo(problem,currentState,nextState)
-        print '$',
-        print nextState,
-        print path
+        print ('$',)
+        print (nextState,)
+        print (path)
         currentState=nextState
         dir.extend(path)
     #End of maze exploration
@@ -84,8 +86,8 @@ def depthFirstSearch(problem):
                 break
         if hasFoundGoal:
             break
-    print '*Goal',
-    print goalState
+    print ('*Goal')
+    print (goalState)
     #3.Find the shortest path to goal
     path=searchPathTo(problem,startState,goalState)
     
@@ -93,9 +95,9 @@ def depthFirstSearch(problem):
     return dir
 
 def searchPathTo(problem,start,goal):
-    print '!',
-    print start,
-    print goal
+    print ('!',)
+    print (start)
+    print (goal)
     dir=[]
     currentState=start
     lastDirection=Directions.STOP
@@ -113,11 +115,11 @@ def searchPathTo(problem,start,goal):
             if successor[1]!=Directions.REVERSE[lastDirection] and successor[0] not in visited:
                     checkList.push([currentLevel+1,successor])
                     parent[successor[0]]=[currentState,successor[1]]
-            print successor,
-        print 'End'
+            print (successor)
+        print ('End')
         nextElement=checkList.pop()
         currentState=nextElement[1][0]
-        print currentState
+        print (currentState)
         currentLevel=nextElement[0]
         lastDirection=nextElement[1][1]
 
@@ -155,7 +157,6 @@ def breadthFirstSearch(problem):
     return dir
 
 def uniformCostSearch(problem,start,end):
-    from game import Directions
     dir=[]
     currentState=problem.getStartState()
     lastDirection=Directions.STOP

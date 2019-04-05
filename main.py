@@ -25,7 +25,7 @@ def main():
 
     startCell = Cell((0, 0))
     #data[(0,0)]=startCell
-    carState = [startCell, Directions.NORTH]
+    carState = [startCell, Directions.NORTH]  #Set the initial facing direction of mouse to north
     visited = []
     checkList = []
     firstRun = True
@@ -36,6 +36,7 @@ def main():
     cCell=None
     lastReading=[]
     maze={(0,0):startCell}
+
     while True:
         print(visited)
         visited.append(carState[0].position)
@@ -171,6 +172,7 @@ def dirToNewTuple(carState, index):
     result=tuple(map(operator.add, carState[0].position, numbers[(index + addon) % 4]))
     print(result)
     return result
+
 def printTree(startCell):
     successor=[]
     successor.append(startCell)

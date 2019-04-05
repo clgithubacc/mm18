@@ -1,5 +1,6 @@
 import serial
 import time
+import sensor
 while True:
     try:
         ser = serial.Serial('/dev/ttyACM0', 9600)
@@ -41,3 +42,26 @@ def turnRight():
     a='3'
     print (a.encode())
     ser.write(a.encode())
+
+# def dirBasedMove(relativeDir, dirCount, pathLength):
+#     """
+#     Move object by counting paths on the given direction
+#     :param relativeDir: checking left (-1) or right (1)
+#     :param dirCount: number of non-wall cells on relativeDir
+#     :param pathLength: length of the current path
+#     """
+#     fastGoForward(pathLength)
+#     currentDirCount=0
+#     while currentDirCount<dirCount:
+#         frontSensors=sensor.getSensorReading()
+#         backSensors=sensor.getBackSensorReadings()
+#         if relativeDir==-1:
+
+
+def fastGoForward(pathLength):
+    modeNumber='4'
+    ser.write(modeNumber.encode())
+
+def stop():
+    modeNumber='5'
+    ser.write(modeNumber.encode())

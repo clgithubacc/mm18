@@ -32,3 +32,6 @@ def getSensorReading():
     }
     print ('Sensor Reading:',output[input])
     return output[input]
+
+def getBackSensorReadings():
+    pass

@@ -4,6 +4,10 @@
 from queue import Queue
 from direction import Directions
 def findPathToCell(startCell,endCell):
+    """
+    Generate directions that guide the mouse from startCell to endCell in the shortest path
+    :return: a list of directions of type Directions
+    """
     dir = []
     startState=startCell.position
     terminateState=startState
@@ -45,12 +49,14 @@ def findPathToCell(startCell,endCell):
         dir.insert(0,parent[terminateState][1])
         terminateState=parent[terminateState][0]
     return dir
-# Find the cell with position of goalPos
-# @param    goalPos - a tuple indicating the coordinate
-# @param    cell - starting cell
-# @return   the cell with given coordinate, return None
-#           if not found
+
 def findCell(goalPos,cell):
+    """
+    Find the cell with the coordinate of goalPos
+    :param goalPos:  a tuple indicating coordinate
+    :param cell:  starting cell
+    :return:  the cell with the coordinate of goalPos. Return None if not found
+    """
     checkList=Queue()
     currentCell=cell
     while currentCell.position != goalPos:
