@@ -1,0 +1,10 @@
+Command list:
+--------------------------------
+Command Char  |  Function (and Description)  |  Returns  |  Parameters  |
+--------------------------------
+1                           turnLeft                                      N/A          N/A
+2                           goForward (one cell)                N/A          N/A
+3                           turnRight                                   N/A          N/A
+4                           fastGoForward (continuous)    N/A          pathLength (used as max. speed reference)
+5                           stop                                           N/A          N/A
+6                           getSensorReading                    num 1:32  N/A
