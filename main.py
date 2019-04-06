@@ -5,7 +5,7 @@ Author: Chen Liang
 ----------------------------------------------------
 04/05/2018  Initial version
     Implement basic maze building and BFS searching functions
-04/01/2019  Reformat
+# 04/01/2019  Reformat
 """
 from direction import Directions
 from sensor import getSensorReading
